@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Two</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+          <nav class="navbar navbar-default" style="background-color: orange">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <a class="navbar-brand" href="/">WebSiteName</a>
+              </div>
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="/homes">Home</a></li>
+              </ul>
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="/">Post</a></li>
+              </ul>
+
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="/contacts">Contact Us</a></li>
+              </ul>
+            <div id="user_nav" style="margin-left:85%",>
+                <% if user_signed_in? %>
+                 <!-- Copyright Signed in as <%#= current_user.email %>. Not you?-->
+                <button> <%= link_to "Sign out", destroy_user_session_path, :method => :delete %></button>
+                <% else %>
+               <button> <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %></button>
+              <% end %>
+            </div>
+            </div>
+          </nav>
+
+        <% if notice %>
+          <p class="alert alert-success"><%= notice %></p>
+        <% end %>
+        <% if alert %>
+          <p class="alert alert-danger"><%= alert %></p>
+        <% end %>
+    <%= yield %>
+  </body>
+</html>
